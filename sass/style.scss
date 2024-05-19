@@ -127,12 +127,7 @@ body {
         }
    }
 }
-.button-red {
-    // move to the end of the line
-    margin-right: auto;
 
-
-}
 // Added students list
 .list {
     width: 50%;
@@ -169,6 +164,9 @@ body {
             transform: translateY(2px);
         }
     }
+    .button-red {
+        margin-left: 200px;
+    }
 }
 
 .list-body {
@@ -179,12 +177,33 @@ body {
 }
 
 .add-form {
-    // display: none;
+    display: none;
 }
 .add-list {
-    // display: none;
+    display: none;
 }
 .show {
     display: flex;
 }
 
+@media screen and (max-width: 1200px) {
+    .form-class-wrapper {
+        flex-direction: column;
+    }
+    .list {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .form {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .form {
+        padding: 30px;
+    }
+    
+}
