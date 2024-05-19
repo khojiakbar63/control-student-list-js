@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSL</title>
+    <!-- sass -->
+    <link rel="stylesheet" href="./css/style.min.css">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="form-page">
+
+        <div class="container">
+            <button id="show-form-btn" class="show--form--btn">SHOW FORM</button>
+            <form class="form add-form" id="form">
+                <h1 class="form--title">ADD A STUDENT TO THE LIST BELOW</h1>
+                <input id="first-name" class="form--input" type="text" placeholder="First name">
+                <input id="last-name" class="form--input" type="text" placeholder="Last name">
+                <input id="age" class="form--input" type="number" min="16"  placeholder="Age">
+                
+                <div>
+                    <button type="submit" class="add--form--btn" id="submit-btn">ADD STUDENT</button>
+                    <button type="reset" class="add--form--btn" id="reset-form-btn">RESET</button>
+                </div>
+            <button id="show-list-btn" class="show--list--btn">SHOW LIST</button>
+            </form>
+        
+            <h1 class="list-title">Students List</h1>
+            <div class="list-headings">
+                <h2>First Name</h2>
+                <h2>Last Name</h2>
+                <h2>Age</h2>
+            </div>
+            <div class="list add-list" id="show-area">
+
+            </div>
+    
+        </div>
+    </div>
+    
+<script src="/script/app.js"></script>
+</body>
+</html>
