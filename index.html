@@ -11,32 +11,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <div class="form-page">
 
         <div class="container">
-            <button id="show-form-btn" class="show--form--btn">SHOW FORM</button>
-            <form class="form add-form" id="form">
-                <h1 class="form--title">ADD A STUDENT TO THE LIST BELOW</h1>
-                <input id="first-name" class="form--input" type="text" placeholder="First name">
-                <input id="last-name" class="form--input" type="text" placeholder="Last name">
-                <input id="age" class="form--input" type="number" min="16"  placeholder="Age">
-                
-                <div>
-                    <button type="submit" class="add--form--btn" id="submit-btn">ADD STUDENT</button>
-                    <button type="reset" class="add--form--btn" id="reset-form-btn">RESET</button>
-                </div>
-            <button id="show-list-btn" class="show--list--btn">SHOW LIST</button>
-            </form>
-        
-            <h1 class="list-title">Students List</h1>
-            <div class="list-headings">
-                <h2>First Name</h2>
-                <h2>Last Name</h2>
-                <h2>Age</h2>
-            </div>
-            <div class="list add-list" id="show-area">
 
+            <button id="show-form-btn" class="button-light">SHOW FORM</button>
+            <div class="form-class-wrapper">
+                <form class="form add-form" id="form">
+                    <h1 class="form--title">ADD A STUDENT</h1>
+                    <input id="first-name" class="form--input" type="text" placeholder="First name">
+                    <input id="last-name" class="form--input" type="text" placeholder="Last name">
+                    <input id="age" class="form--input" type="number" min="16"  placeholder="Age">
+                    
+                    <div class="form--buttons">
+                        <button type="submit" class="button button-light" id="submit-btn">
+                            ADD
+                        </button>
+                        <button type="reset" class="button button-light" id="reset-form-btn">
+                            RESET
+                        </button>
+                    </div>
+                </form>
+                <div class="list add-list" id="show-area">
+                    <h1 class="list-title">List of Students</h1>
+                    <div class="list-title-wrapper">
+                        <h3>No</h3>
+                        <h3>First Name</h3>
+                        <h3>Last Name</h3>
+                        <h3>Age</h3>
+                    </div>
+                    <div id="browser-display">
+                    </div>
+                </div>
             </div>
     
         </div>

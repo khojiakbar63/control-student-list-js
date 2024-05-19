@@ -1,22 +1,25 @@
 // BRING HTML ELEMENTS TO JS
 let showFormBtn = document.querySelector("#show-form-btn");
 let form = document.querySelector("#form");
+
 let firstNameInput = document.querySelector("#first-name");
 let lastNameInput = document.querySelector("#last-name");
 let ageInput = document.querySelector("#age");
 let showArea = document.querySelector("#show-area");
-let showListBtn = document.querySelector("#show-list-btn");
-// let submitBtn = document.querySelector("#submit-btn");
+let studentOnBrowser = document.querySelector("#browser-display");
+
 // ~~~~~~FUNCTIONS~~~~~~~
 let ALL_STUDENTS_LIST = JSON.parse(localStorage.getItem("students")) || []
 // Show form function
 function showForm () {
     if (form.classList.contains('show')) {
-        showFormBtn.innerHTML = 'SHOW FORM'
+        showFormBtn.innerHTML = 'SHOW'
         form.classList.remove('show')
+        showArea.classList.remove('show')
     }else {
         form.classList.add('show')
-        showFormBtn.innerHTML = 'HIDE FORM'
+        showArea.classList.add('show')
+        showFormBtn.innerHTML = 'HIDE'
     }
 }
 // Submit form function
@@ -29,65 +32,71 @@ function submitForm (e) {
         this.age = age
     }
 
-    let firstName = firstNameInput.value
-    let lastName = lastNameInput.value
-    let age = ageInput.value
+    let firstName = firstNameInput.value.trim()
+    let lastName = lastNameInput.value.trim()
+    let age = ageInput.value.trim()
     let newPerson = new Person(firstName, lastName, age)
     console.log(newPerson);
 
-    ALL_STUDENTS_LIST.push(newPerson)
-    localStorage.setItem("students", JSON.stringify(ALL_STUDENTS_LIST))
-
-    update ()
+    if (firstName && lastName && age) {
+        ALL_STUDENTS_LIST.push(newPerson)
+        localStorage.setItem("students", JSON.stringify(ALL_STUDENTS_LIST))
+    
+        update ()
+    } else {
+        alert("Please, fill the form!")
+    }
 }
 // Update function
 function update () {
     let students = JSON.parse(localStorage.getItem("students")) || [];
-    showArea.innerHTML = ``
-    students.forEach((student, index) => {
-        console.log(student.firstName, student.lastName, student.age);
+    studentOnBrowser.innerHTML = ``
 
-        showArea.innerHTML += `
+    students.forEach((student, index) => {
+
+
+        let studentDiv = document.createElement("div");
+        studentDiv.classList.add("list-body");
+
+        studentDiv = `
         <div class="list-body">
+            <h2>${index+1}:</h2>
             <h2>${student.firstName}</h2>
             <h2>${student.lastName}</h2>
             <h2>${student.age}</h2>
         </div>
         `
+        studentOnBrowser.innerHTML += studentDiv
+
         let deleteBtn = document.createElement("button")
         deleteBtn.innerHTML = "DELETE"
-        deleteBtn.classList.add("delete-btn")
-        showArea.appendChild(deleteBtn)
+        deleteBtn.classList.add("button-red")
+        studentOnBrowser.appendChild(deleteBtn)
 
         deleteBtn.addEventListener("click", function () {
-            let index = students.indexOf(student)
-            students.splice(index, 1)
-            localStorage.setItem("students", JSON.stringify(students))
-            update()
-        })
+            let deleteIndex = students.findIndex(s => s === student );
+            if (deleteIndex != -1) {
+                students.splice(deleteIndex, 1)
+                localStorage.setItem("students", JSON.stringify(students))
+                update()
+            }
+        });
+
+
+       
+
     });
+    form.reset()
 
-    document.getElementById('form').reset()
-    window.onload = function() {
-        update()
-    }
+
+
+    
 }
 
-function showList() {
-    if (showArea.classList.contains('show-list')) {
-        showListBtn.innerHTML = 'SHOW LIST';
-        showArea.classList.remove('show-list');
-        showArea.classList.add('hide-list');
-    } else {
-        showArea.classList.add('show-list');
-        showArea.classList.remove('hide-list');
-        showListBtn.innerHTML = 'HIDE LIST';
-    }
-}
+
 // ~~~~~~EVENT LISTENERS~~~~~~
 showFormBtn.addEventListener("click", showForm)
 form.addEventListener("submit", submitForm)
-showListBtn.addEventListener("click", showList)
 
 
 
@@ -95,17 +104,3 @@ showListBtn.addEventListener("click", showList)
 
 
 
-
-
-
-
-
-
-
-
-
-
-window.onload = function () {
-    showFormBtn.click()
-    console.log("Hello".repeat(100));
-}
